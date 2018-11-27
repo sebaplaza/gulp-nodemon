@@ -1,30 +1,24 @@
 var gulp    = require('gulp')
-  , jshint  = require('gulp-jshint')
   , nodemon = require('./index')
 //  , path = require('path')
 
-gulp.task('lint', function (){
-  return gulp.src('./*/**.js')
-    .pipe(jshint())
-})
-
 gulp.task('cssmin', function (done){
-  done();
+  done()
 })
 
 gulp.task('afterstart', function (done){
-  console.log('proc has finished restarting!');
-  done();
+  console.log('proc has finished restarting!')
+  done()
 })
 
-gulp.task('test', gulp.series('lint', function (done){
+gulp.task('test', gulp.series(function (done) {
   var stream = nodemon({
-      nodemon: require('nodemon')
+    nodemon: require('nodemon')
     , script: './server.js'
     , verbose: true
     , env: {
-        'NODE_ENV': 'development'
-      }
+      'NODE_ENV': 'development'
+    }
     , watch: './'
     , ext: 'js coffee'
     , done: done

@@ -1,14 +1,12 @@
 'use strict'
 
 var nodemon
-  , colors  = require('colors')
-  , gulp    = require('gulp')
   , cp      = require('child_process')
   , bus     = require('nodemon/lib/utils/bus')
   , path    = require('path')
 
 module.exports = function (options) {
-  options = options || {};
+  options = options || {}
 
   // plug nodemon
   if (options.nodemon && typeof options.nodemon === 'function') {
@@ -51,7 +49,7 @@ module.exports = function (options) {
     // Ignore exit event during restart
     if (script.quitEmitted) {
       // Properly signal async completion by calling the callback provided by gulp
-      if (typeof options.done === "function") {
+      if (typeof options.done === 'function') {
         options.done()
       }
 
@@ -65,6 +63,7 @@ module.exports = function (options) {
   })
 
   // Shim 'on' for use with gulp tasks
+  /* eslint no-redeclare:0 */
   script.on = function (event, tasks){
     var tasks = Array.prototype.slice.call(arguments)
       , event = tasks.shift()
